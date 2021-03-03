@@ -1,1 +1,81 @@
 # DMAD_Encounter_Rate
+
+A Series of R Scripts to Calculate the Encounter Rates
+of TT Dolphins within the MNE Survey Area over each Season
+
+** REQUIREMENTS **
+
+1) DMAD Master Data Set:
+
+\DATA\MONTENEGRO MASTER DATA SET.xls
+
+2) Pythagoras Master Data Set:
+
+\DATA\PYTHAGORAS_MNE.xls
+
+**Static Inputs - No need to modify unless desired:
+
+3) A gridded shapefile covering the Entire Survey area between the shore and the
+farthest boat survey extent (or larger)
+
+Each Cell requires a weighting factor which described the fraction of the grid cell that overlays land.
+
+\DATA\Full_Survey_Area_Grid_With_Weight.gpkg 
+
+4) A shapefile of the land station survey areas whose dimensions are determined by the angular limits of the land station site and the farthest sighting (boat or dolphin) recorded.
+
+All filenames must match exactly!
+
+** TO RUN **
+
+A recent copy of R-Studio @ https://rstudio.com/products/rstudio/download/
+
+Simply execute each R Script in the order listed by filename:
+
+1 - Calculate Boat Effort.R
+2 - Calculate Land Effort.R
+3 - Create Combined Grid Effort.R
+4 - Extract Boat Sightings.R
+5 - Extract Land Sightings.R
+6 - Create Combined Grid Sightings.R
+7 - Calculate Encounter Rates.R
+
+Outputs of each Script are sent to the "OUT" directory in the form of Shapefile and CSV Files and can be easily imported into GIS Software for Map Creation.
+
+The Final Encounter Rate Script needs each previous script to be ran beforehand!
+
+Some scripts may take a while to load libraries and finish execution.
+
+Enjoy :)
+
+NOTE: If you wish to run the whole script setup in one go, you can run the following code in a file saved in the 'R' directory:
+
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
+source("1 - Calculate Boat Effort.R")
+rm(list = ls())
+source("2 - Calculate Land Effort.R")
+rm(list = ls())
+source("3 - Create Combined Grid Effort.R")
+rm(list = ls())
+source("4 - Extract Boat Sightings.R")
+rm(list = ls())
+source("5 - Extract Land Sightings.R")
+rm(list = ls())
+source("6 - Create Combined Grid Sightings.R")
+rm(list = ls())
+source("7 - Calculate Encounter Rates.R")
+
+
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
